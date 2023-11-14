@@ -1,5 +1,6 @@
-import { CSP_NONCE, Component } from '@angular/core';
-import { LoginServiceService } from './login-service.service';
+import { CSP_NONCE, Component, OnInit } from '@angular/core';
+import { LoginServiceService } from './service/login-service.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -7,15 +8,21 @@ import { LoginServiceService } from './login-service.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   title = 'angular-project-spring';
 
-  usuario = {login: '', senha: ''};
+  constructor(private router: Router){}
 
-  constructor(private loginService: LoginServiceService){}
-
-  public login(){
-    //console.info("User" + this.usuario.login);
-    this.loginService.login(this.usuario);
+  ngOnInit(): void {
+    if(localStorage.getItem('token') == null){
+           this.router.navigate(['login']);  
+    }
   }
+
+  public sair(){
+    localStorage.clear();
+    this.router.navigate(['login']);
+  }
+
 }

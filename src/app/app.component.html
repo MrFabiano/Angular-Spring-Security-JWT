@@ -1,23 +1,26 @@
-<form>
-    <div  class="form-group">
-       <h3>Login System</h3>
-    </div>
+<div id="page-content-wrapper">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+         <a class="nav-link" routerLink="['/home']">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Menu</a>
+         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+           <a class="dropdown-item" href="#">Link 1 </a>
+           <a class="dropdown-item" href="#">Link 2 </a>
+           <div class="dropdown-divider"></div>
+           <a class="dropdown-item" href="#">Link 3 </a>
+         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="sair()">Sair</a>
+      </li>
+    </ul>
+</div>
 
+</nav>
 
-    <div class="form-group">
-     <label for="login">E-mail:</label>
-     <input type="email" class="form-control" #email="ngModel" [(ngModel)] = "usuario.login" id="login" name="login" placeholder="Informe o UserName" required>
-     <div *ngIf="email.invalid" class="alert alert-danger">
-         Login deve ser informado
-     </div>
-    </div>
-    <div class="form-group">
-        <label for="senha">Senha:</label>
-        <input type="password" class="form-control" #senha="ngModel" [(ngModel)] = "usuario.senha" id="senha" name="senha" placeholder="Informe a senha" required>
-        <div *ngIf="senha.invalid" class="alert alert-danger">
-            Senha deve ser informado
-        </div>
-       </div>
-    <button type="submit" [disabled]="email.invalid || senha.invalid"  class="btn btn-primary" (click)="login()">Acessar</button>
-
-</form>
+</div>
+<router-outlet></router-outlet>
