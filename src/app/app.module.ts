@@ -15,7 +15,6 @@ import { HttpInterceptorModule } from './service/header-interceptor.service';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    
   ],
   imports: [
     BrowserModule,
