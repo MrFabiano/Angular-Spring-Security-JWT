@@ -1,6 +1,6 @@
 // const PROXY_CONFIG = [
 //     {
-//        context: ['/usuario'],
+//        context: ['/api'],
 //        target: 'http://localhost:8080/',
 //        secure: false,
 //        ws: true,

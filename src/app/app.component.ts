@@ -1,5 +1,4 @@
-import { CSP_NONCE, Component, OnInit } from '@angular/core';
-import { LoginServiceService } from './service/login-service.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -19,10 +18,6 @@ export class AppComponent implements OnInit {
            this.router.navigate(['login']);  
     }
   }
-
-  public sair(){
-    localStorage.clear();
-    this.router.navigate(['login']);
-  }
-
 }
+
+

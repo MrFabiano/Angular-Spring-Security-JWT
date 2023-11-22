@@ -1,17 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AppConstants } from '../app-constants';
+import { User } from '../model/user';
+import { Observable } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
+
   constructor(private httpClient: HttpClient) {}
 
-  getListUser(): Observable<any>{
-    return this.httpClient.get<any>(AppConstants.baseUrl);
+  getListUser(): Observable<User[]>{
+    return this.httpClient.get<User[]>(AppConstants.baseUrl);
   }
 }
 
