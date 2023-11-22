@@ -18,6 +18,11 @@ export class AppComponent implements OnInit {
            this.router.navigate(['login']);  
     }
   }
+  public sair(){
+    localStorage.clear();
+    this.router.navigate(['login']);
+  }
+
 }
 
 
