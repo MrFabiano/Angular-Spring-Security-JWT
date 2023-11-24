@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpInterceptorModule } from './interceptor/header-interceptor.service';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { MenuComponent } from './menu/menu.component';
+import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MenuComponent } from './menu/menu.component';
     HomeComponent,
     LoginComponent,
     UsuarioComponent,
-    MenuComponent
+    MenuComponent,
+    UsuarioaddComponent
  
   ],
   imports: [

@@ -4,5 +4,6 @@ export interface User {
     login: string;
     nome: string;
     cpf: string;
+    senha: string;
     
 }
