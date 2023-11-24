@@ -1,12 +1,14 @@
-
+<br/>
+<br/>
 <form class="form-inline">
     <div class="form-group mx-sm-3 mb-2">
-      <input type="text" class="form-control" id="nome" [(ngModel)]="nome" placeholder="Pesquisa por nome" required>
+      <input type="text" class="form-control" id="nome" [(ngModel)]="nome" name="nome" placeholder="Pesquisa por nome" required>
     </div>
-      <button type="button" (click)="consulterUser()" class="btn btn-primary mb-2">Buscar</button>
+      <button type="button" (click)="consulterUser()" class="btn btn-secondary mb-2">Buscar</button>
 
-      <button type="button" routerLink="['/userAdd']" routerLinkActive="router-link-active" style="margin-left: 5px;"  class="btn btn-warning mb-2">Novo</button>
+      <button type="button" [routerLink]="['/userAdd']" routerLinkActive="router-link-active" style="margin-left: 5px;"  class="btn btn-info mb-2">Novo</button>
   </form>
+  <br/>
 
 <table class="table">
     <thead class="thead-dark">
@@ -18,20 +20,18 @@
     </thead>
  <tbody>
      <tr *ngFor="let user of users">
-     <td {{user.id}}></td>
-     <td {{user.nome}}></td>
-     <td {{user.cpf}}></td>
+     <td>{{user.id}}</td>
+     <td>{{user.nome}}</td>
+     <td>{{user.cpf}}</td>
      <td><button class="btn btn-danger" type="button" (click)="deleteUser(user.id)">Delete</button></td>
-     <td><button routerLink="['/userAdd', user.id]" routerLinkActive="router-link-active" class="btn btn-primary" type="button">Editar</button></td>
+     <td><button [routerLink]="['/userAdd', user.id]" routerLinkActive="router-link-active" class="btn btn-primary" type="button">Editar</button></td>
     </tr>
  </tbody>
  </table>
-<br>
  <div>
-  <li class="nav-item">
-    <a class="nav-link" (click)="sair()">Sair</a>
-  </li>
+    <button class="btn btn-danger" type="button" (click)="sair()">Sair</button>
  </div>
 
 
-
+    
+ 

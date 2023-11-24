@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
@@ -10,8 +11,8 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 })
 export class UsuarioComponent implements OnInit {
 
-  users!: User[];
-  nome!: string;
+  users! : User[];
+  nome! : string;
 
 constructor(private usuarioService: UsuarioService, private router: Router){}
 
@@ -19,11 +20,6 @@ constructor(private usuarioService: UsuarioService, private router: Router){}
     this.usuarioService.getListUser().subscribe(data =>{
         this.users = data;
     });
-  }
-
-  public sair(){
-    localStorage.clear();
-    this.router.navigate(['login']);
   }
 
   deleteUser(id: number){
@@ -36,9 +32,15 @@ constructor(private usuarioService: UsuarioService, private router: Router){}
   }
 
   consulterUser(){
-    this.usuarioService.consulteUser(this.nome).subscribe(data =>{
+    this.usuarioService.consultUser(this.nome).subscribe(data =>{
         this.users = data;
     });
   }
+
+  public sair(){
+    localStorage.clear();
+    this.router.navigate(['login']);
+  }
+
 }
 

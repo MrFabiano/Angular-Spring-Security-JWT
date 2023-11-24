@@ -12,7 +12,7 @@ export class LoginServiceService {
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
-  login(usuario: Usuario){
+  login(usuario: any){
     return this.httpClient.post(AppConstants.baseLogin, JSON.stringify(usuario)).subscribe(data => {
       
            var token = JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1];

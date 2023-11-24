@@ -10,8 +10,8 @@ const routes: Routes = [
   { path: 'login', component : LoginComponent },
   { path: '', component : LoginComponent },
   { path: 'userList', component : UsuarioComponent },
-  { path: 'userAdd', component : UsuarioaddComponent},
-  { path: 'userAdd/:id', component : UsuarioaddComponent},
+  { path: 'userAdd', component : UsuarioaddComponent },
+  { path: 'userAdd/:id', component : UsuarioaddComponent },
    
  ];
 

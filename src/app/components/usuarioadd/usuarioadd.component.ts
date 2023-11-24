@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../../model/user';
 import { UsuarioService } from 'src/app/service/usuario.service';
-
-
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './usuarioadd.component.html',
@@ -26,19 +25,20 @@ export class UsuarioaddComponent implements OnInit{
   }
 
   saveUser(){
-    
-    if(this.usuario.id != null && this.usuario.id.toString().trim != null)/*atualizando ou editando*/{
+    if(this.usuario.id != null && this.usuario.id.toString().trim() != null){ /*atualizando ou editando*/
            this.userService.updateSaveUser(this.usuario).subscribe(data =>{
+            this.novo();
                  console.info("Atualizado" + data);
            });
     }else{
-      this.userService.getSaveUser(this.usuario).subscribe(data =>{
+      this.userService.postSaveUser(this.usuario).subscribe(data =>{
+        this.novo();
             console.info("Gravou user: " + data);
       });
     }
   }
 
   novo(){
-    this.usuario;
+  this.usuario = this.usuario;
   }
 }

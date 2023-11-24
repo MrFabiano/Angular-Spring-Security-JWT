@@ -14,28 +14,28 @@ export class UsuarioService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getListUser(): Observable<User[]>{
-    return this.httpClient.get<User[]>(AppConstants.baseUrl);
+  getListUser(): Observable<any>{
+    return this.httpClient.get<any>(AppConstants.baseUrl);
   }
 
   deleteUser(id: number) : Observable<any>{
        return this.httpClient.delete(AppConstants.baseUrl + id, {responseType : 'text'});
   }
 
-  consulteUser(nome: string) : Observable<any>{
-    return this.httpClient.get(AppConstants.baseUrl + "userByName/" + nome);
+  consultUser(nome: string) : Observable<any>{
+    return this.httpClient.get<any>(AppConstants.baseUrl + "userByName/" + nome);
   }
 
-  getUserConsult(id: any): Observable<any>{
-    return this.httpClient.get(AppConstants.baseUrl + id);
+  getUserConsult(id: any): Observable<User>{
+    return this.httpClient.get<any>(AppConstants.baseUrl + id);
   }
 
-  getSaveUser(user: any): Observable<any>{
-    return this.httpClient.post(AppConstants.baseUrl, user);
+  postSaveUser(user: any): Observable<any>{
+    return this.httpClient.post<any>(AppConstants.baseUrl, user);
   }
 
   updateSaveUser(user: any): Observable<any>{
-    return this.httpClient.put(AppConstants.baseUrl, user);
+    return this.httpClient.put<any>(AppConstants.baseUrl, user);
   }
 }
 
