@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from '../model/usuario';
 import { AppConstants } from '../app-constants';
 
 
@@ -12,8 +11,8 @@ export class LoginServiceService {
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
-  login(usuario: any){
-    return this.httpClient.post(AppConstants.baseLogin, JSON.stringify(usuario)).subscribe(data => {
+  login(user: any){
+    return this.httpClient.post(AppConstants.baseLogin, JSON.stringify(user)).subscribe(data => {
       
            var token = JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1];
 

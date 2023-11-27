@@ -1,6 +1,7 @@
+import { User } from './../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../../model/user';
+
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Observable } from 'rxjs';
 @Component({
@@ -8,9 +9,9 @@ import { Observable } from 'rxjs';
   templateUrl: './usuarioadd.component.html',
   styleUrls: ['./usuarioadd.component.css']
 })
-export class UsuarioaddComponent implements OnInit{
+export class UsuarioaddComponent implements OnInit {
 
-  usuario!: User;
+  user: User = {} as User;
 
   constructor(private routeActive: ActivatedRoute, private userService: UsuarioService){}
 
@@ -19,19 +20,19 @@ export class UsuarioaddComponent implements OnInit{
 
     if(id != null){
       this.userService.getUserConsult(id).subscribe(data =>{
-        this.usuario = data;
+        this.user = data;
       });
     }
   }
 
   saveUser(){
-    if(this.usuario.id != null && this.usuario.id.toString().trim() != null){ /*atualizando ou editando*/
-           this.userService.updateSaveUser(this.usuario).subscribe(data =>{
+    if(this.user.id != null && this.user.id.toString().trim() != null){ /*atualizando ou editando*/
+           this.userService.updateSaveUser(this.user).subscribe(data =>{
             this.novo();
                  console.info("Atualizado" + data);
            });
     }else{
-      this.userService.postSaveUser(this.usuario).subscribe(data =>{
+      this.userService.postSaveUser(this.user).subscribe(data =>{
         this.novo();
             console.info("Gravou user: " + data);
       });
@@ -39,6 +40,6 @@ export class UsuarioaddComponent implements OnInit{
   }
 
   novo(){
-  this.usuario = this.usuario;
+  this.user = {} as User;
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
@@ -17,7 +17,7 @@ export class UsuarioComponent implements OnInit {
 constructor(private usuarioService: UsuarioService, private router: Router){}
 
   ngOnInit(): void {
-    this.usuarioService.getListUser().subscribe(data =>{
+    this.usuarioService.getListUser().pipe(first()).subscribe(data =>{
         this.users = data;
     });
   }

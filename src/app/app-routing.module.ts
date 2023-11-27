@@ -4,14 +4,15 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.component';
+import { GuardsService } from './service/guard/guards.service';
 
 const routes: Routes = [
-  { path: 'home', component : HomeComponent },
+  { path: 'home', component : HomeComponent, canActivate: [GuardsService]},
   { path: 'login', component : LoginComponent },
   { path: '', component : LoginComponent },
-  { path: 'userList', component : UsuarioComponent },
-  { path: 'userAdd', component : UsuarioaddComponent },
-  { path: 'userAdd/:id', component : UsuarioaddComponent },
+  { path: 'userList', component : UsuarioComponent, canActivate: [GuardsService] },
+  { path: 'userAdd', component : UsuarioaddComponent, canActivate: [GuardsService] },
+  { path: 'userAdd/:id', component : UsuarioaddComponent, canActivate: [GuardsService] },
    
  ];
 

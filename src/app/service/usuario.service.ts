@@ -26,7 +26,7 @@ export class UsuarioService {
     return this.httpClient.get<any>(AppConstants.baseUrl + "userByName/" + nome);
   }
 
-  getUserConsult(id: any): Observable<User>{
+  getUserConsult(id: any): Observable<any>{
     return this.httpClient.get<any>(AppConstants.baseUrl + id);
   }
 
@@ -36,6 +36,15 @@ export class UsuarioService {
 
   updateSaveUser(user: any): Observable<any>{
     return this.httpClient.put<any>(AppConstants.baseUrl, user);
+  }
+
+  userAutenticado(){
+    if(localStorage.getItem('token') !== null 
+        && localStorage.getItem('token')?.toString().trim !== null){
+        return true;
+    } else{
+      return false;
+    }
   }
 }
 

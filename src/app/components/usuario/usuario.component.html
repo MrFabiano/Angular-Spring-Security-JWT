@@ -1,8 +1,9 @@
+<app-menu></app-menu>
 <br/>
 <br/>
 <form class="form-inline">
     <div class="form-group mx-sm-3 mb-2">
-      <input type="text" class="form-control" id="nome" [(ngModel)]="nome" name="nome" placeholder="Pesquisa por nome" required>
+      <input type="text" class="form-control" id="nome" [(ngModel)] = "nome" name="nome" placeholder="Pesquisa por nome" required>
     </div>
       <button type="button" (click)="consulterUser()" class="btn btn-secondary mb-2">Buscar</button>
 
@@ -20,9 +21,9 @@
     </thead>
  <tbody>
      <tr *ngFor="let user of users">
-     <td>{{user.id}}</td>
-     <td>{{user.nome}}</td>
-     <td>{{user.cpf}}</td>
+     <td>{{user?.id}}</td>
+     <td>{{user?.nome}}</td>
+     <td>{{user?.cpf}}</td>
      <td><button class="btn btn-danger" type="button" (click)="deleteUser(user.id)">Delete</button></td>
      <td><button [routerLink]="['/userAdd', user.id]" routerLinkActive="router-link-active" class="btn btn-primary" type="button">Editar</button></td>
     </tr>
@@ -31,6 +32,7 @@
  <div>
     <button class="btn btn-danger" type="button" (click)="sair()">Sair</button>
  </div>
+
 
 
     
