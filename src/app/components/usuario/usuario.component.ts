@@ -23,12 +23,15 @@ constructor(private usuarioService: UsuarioService, private router: Router){}
   }
 
   deleteUser(id: number){
-   this.usuarioService.deleteUser(id).subscribe(data => {
-    console.log("Retorno do métod delete : " + data);
-    this.usuarioService.getListUser().subscribe(data =>{
-    this.users = data;
+    if(confirm('Deseja mesmo remover?')){
+      
+      this.usuarioService.deleteUser(id).subscribe(data => {
+        console.log("Retorno do métod delete : " + data);
+        this.usuarioService.getListUser().subscribe(data =>{
+        this.users = data;
+           });
        });
-   });
+    }
   }
 
   consulterUser(){
