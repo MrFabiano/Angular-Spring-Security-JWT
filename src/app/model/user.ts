@@ -1,3 +1,5 @@
+import { Telefone } from "./telefone";
+
 export interface User {
 
     id: number;
@@ -5,6 +7,7 @@ export interface User {
     login: string;
     senha: string;
     cpf: string;
+    telefones?: Telefone[];
 
     
 }

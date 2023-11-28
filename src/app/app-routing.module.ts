@@ -6,6 +6,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.component';
 import { GuardsService } from './service/guard/guards.service';
 
+
 const routes: Routes = [
   { path: 'home', component : HomeComponent, canActivate: [GuardsService]},
   { path: 'login', component : LoginComponent },
@@ -15,6 +16,8 @@ const routes: Routes = [
   { path: 'userAdd/:id', component : UsuarioaddComponent, canActivate: [GuardsService] },
    
  ];
+
+ //export const optionsMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +12,8 @@ import { HttpInterceptorModule } from './interceptor/header-interceptor.service'
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { MenuComponent } from './menu/menu.component';
 import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.component';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.componen
     LoginComponent,
     UsuarioComponent,
     MenuComponent,
-    UsuarioaddComponent
+    UsuarioaddComponent,
  
   ],
   imports: [
@@ -29,9 +31,11 @@ import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.componen
     NgbModule,
     FormsModule,
     HttpClientModule,
-    HttpInterceptorModule
+    HttpInterceptorModule,
+    NgxMaskDirective
+   
   ],
-  providers: [],
+  providers: [provideNgxMask({ /* opções de cfg */ })],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

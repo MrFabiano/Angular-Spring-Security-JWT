@@ -46,5 +46,9 @@ export class UsuarioService {
       return false;
     }
   }
+
+  removePhone(id: any){
+    return this.httpClient.delete(AppConstants.baseUrl + "removePhone/" + id, {responseType: 'text'});
+  }
 }
 
