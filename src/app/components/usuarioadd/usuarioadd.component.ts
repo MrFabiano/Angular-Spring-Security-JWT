@@ -1,15 +1,68 @@
 import { Telefone } from './../../model/telefone';
 import { User } from './../../model/user';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Observable } from 'rxjs';
+import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
+
+@Injectable()
+export class FormatDateAdapter extends NgbDateAdapter<string> {
+
+
+  readonly DELIMITER = '/';
+
+  override fromModel(value: string | null): NgbDateStruct | null {
+    if(value){
+      let date = value.split(this.DELIMITER);
+      return {
+        day: parseInt(date[0], 10),
+        month: parseInt(date[1], 10),
+        year: parseInt(date[2], 10)
+      };
+    }
+     return null;
+  }
+  override toModel(date: NgbDateStruct | null): string | null {
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+  }
+
+}
+
+@Injectable()
+export class FormateDate extends NgbDateParserFormatter {
+
+  readonly DELIMITER = '/';
+
+  override parse(value: string): NgbDateStruct | null {
+     if(value){
+      let date = value.split(this.DELIMITER);
+      return {
+        day: parseInt(date[0], 10),
+        month: parseInt(date[1], 10),
+        year: parseInt(date[2], 10)
+      };
+    }
+     return null;
+  }
+
+  override format(date: NgbDateStruct | null): string {
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
+  }
+
+  toModel(date: NgbDateStruct | null): string | null{
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
+  }
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './usuarioadd.component.html',
-  styleUrls: ['./usuarioadd.component.css']
+  styleUrls: ['./usuarioadd.component.css'],
+  providers: [{provide: NgbDateParserFormatter, useClass : FormateDate}, 
+  {provide: NgbDateAdapter, useClass : FormatDateAdapter}]
 })
 export class UsuarioaddComponent implements OnInit {
 

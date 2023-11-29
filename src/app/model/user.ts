@@ -7,6 +7,7 @@ export interface User {
     login: string;
     senha: string;
     cpf: string;
+    dataNascimento : string;
     telefones?: Telefone[];
 
     
