@@ -18,6 +18,14 @@ export class UsuarioService {
     return this.httpClient.get<any>(AppConstants.baseUrl);
   }
 
+  getListPage(pagina: any): Observable<any>{
+    return this.httpClient.get<any>(AppConstants.baseUrl + "page/" + pagina);
+  }
+
+  getUserPageName(nome: string, page: number): Observable<any>{
+    return this.httpClient.get<any>(AppConstants.baseUrl + "userByName/" + nome + "/page/" + page);
+  }
+
   deleteUser(id: number) : Observable<any>{
        return this.httpClient.delete(AppConstants.baseUrl + id, {responseType : 'text'});
   }

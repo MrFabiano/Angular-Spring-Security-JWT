@@ -13,6 +13,9 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { MenuComponent } from './menu/menu.component';
 import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 @NgModule({
@@ -22,7 +25,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     LoginComponent,
     UsuarioComponent,
     MenuComponent,
-    UsuarioaddComponent,
+    UsuarioaddComponent
  
   ],
   imports: [
@@ -32,7 +35,9 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     FormsModule,
     HttpClientModule,
     HttpInterceptorModule,
-    NgxMaskDirective
+    NgxMaskDirective,
+    NgxPaginationModule,
+    MatPaginatorModule
    
   ],
   providers: [provideNgxMask({ /* opções de cfg */ })],
