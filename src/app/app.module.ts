@@ -15,6 +15,9 @@ import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.componen
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { NgxCurrencyDirective } from "ngx-currency";
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     HttpInterceptorModule,
     NgxMaskDirective,
     NgxPaginationModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxCurrencyDirective,
+   
+   
    
   ],
   providers: [provideNgxMask({ /* opções de cfg */ })],

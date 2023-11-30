@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConstants } from '../app-constants';
-import { User } from '../model/user';
 import { Observable } from 'rxjs';
 
 
@@ -13,6 +12,10 @@ export class UsuarioService {
 
 
   constructor(private httpClient: HttpClient) {}
+
+  getProfissaoList(): Observable<any>{
+    return this.httpClient.get<any>(AppConstants.baseUrlPath);
+  }
 
   getListUser(): Observable<any>{
     return this.httpClient.get<any>(AppConstants.baseUrl);

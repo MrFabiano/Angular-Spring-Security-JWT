@@ -5,5 +5,7 @@ export class AppConstants {
     public static get baseLogin(): string { return this.baseServidor + "login" }
 
     public static get baseUrl(): string { return this.baseServidor + "api/usuario/"}
+
+    public static get baseUrlPath(): string { return this.baseServidor + "profissao/"}
     
 }
