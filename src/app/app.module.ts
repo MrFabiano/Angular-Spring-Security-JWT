@@ -16,6 +16,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxCurrencyDirective } from "ngx-currency";
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 
 
@@ -26,7 +27,8 @@ import { NgxCurrencyDirective } from "ngx-currency";
     LoginComponent,
     UsuarioComponent,
     MenuComponent,
-    UsuarioaddComponent
+    UsuarioaddComponent,
+    ConfirmationDialogComponent
  
   ],
   imports: [

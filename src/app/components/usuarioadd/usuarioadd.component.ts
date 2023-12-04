@@ -48,13 +48,23 @@ export class FormateDate extends NgbDateParserFormatter {
   }
 
   override format(date: NgbDateStruct | null): string {
-    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
+    return date ? validarDia(date.day) + this.DELIMITER + validarDia(date.month) + this.DELIMITER + date.year : '';
   }
+
 
   toModel(date: NgbDateStruct | null): string | null{
     return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
   }
 }
+
+function validarDia(valor: any) {
+    if(valor.toString !== '' && parseInt(valor) <= 9){
+      return '0' + valor;
+    } else {
+      return valor;
+    }
+ 
+  }
 
 @Component({
   selector: 'app-root',
