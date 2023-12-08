@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConstants } from '../app-constants';
 import { Observable } from 'rxjs';
+import { UserReport } from '../model/userreport';
+import { UserChart } from '../model/userchart';
 
 
 
@@ -22,11 +24,11 @@ export class UsuarioService {
   }
 
   getListPage(pagina: any): Observable<any>{
-    return this.httpClient.get<any>(AppConstants.baseUrl + "page/" + pagina);
+    return this.httpClient.get<any>(AppConstants.baseUrl + 'page/' + pagina);
   }
 
   getUserPageName(nome: string, page: number): Observable<any>{
-    return this.httpClient.get<any>(AppConstants.baseUrl + "userByName/" + nome + "/page/" + page);
+    return this.httpClient.get<any>(AppConstants.baseUrl + 'userByName/' + nome + '/page/' + page);
   }
 
   deleteUser(id: number) : Observable<any>{
@@ -34,7 +36,7 @@ export class UsuarioService {
   }
 
   consultUser(nome: string) : Observable<any>{
-    return this.httpClient.get<any>(AppConstants.baseUrl + "userByName/" + nome);
+    return this.httpClient.get<any>(AppConstants.baseUrl + 'userByName/' + nome);
   }
 
   getUserConsult(id: any): Observable<any>{
@@ -59,7 +61,25 @@ export class UsuarioService {
   }
 
   removePhone(id: any){
-    return this.httpClient.delete(AppConstants.baseUrl + "removePhone/" + id, {responseType: 'text'});
+    return this.httpClient.delete(AppConstants.baseUrl + 'removePhone/' + id, {responseType: 'text'});
   }
+
+  downloadPdfReport(){
+    return this.httpClient.get(AppConstants.baseUrl + 'relatorio', {responseType: 'text'}).subscribe(data => {
+      document.querySelector('iframe')!.src = data;
+
+    });
+  }
+
+  downloadPdfReportParam(userreport: UserReport) {
+    return this.httpClient.post<any>(AppConstants.baseUrl + 'relatorio/', {responseType: 'text', userreport}).subscribe(data => {
+        document.querySelector('iframe')!.src = data;
+    });
+  }
+
+  loadGraph():Observable<any>{
+    return this.httpClient.get(AppConstants.baseUrl + 'graphic');
+  }
+
 }
 

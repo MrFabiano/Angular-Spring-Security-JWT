@@ -37,13 +37,13 @@
        </div>
 
        <div class="form-group col-md-3">
-        <label for="dataCadastro">Data Cadastro</label>
+        <label for="dataNascimento">Data Nascimento</label>
         <span style="color: red; font-size: 23px;"> *</span>
         <div class="input-group">
-          <input name="dataCadastro" type="text" class="form-control" placeholder="dd/MM/yyyy"
-          ngbDatepicker #dataCadastro="ngbDatepicker" [(ngModel)]="user.dataCadastro" id="dataCadastro" required="true">
+          <input name="dataNascimento" type="text" class="form-control" placeholder="dd/MM/yyyy"
+          ngbDatepicker #dataNascimento="ngbDatepicker" [(ngModel)]="user.dataNascimento" id="dataNascimento" required="true">
           <div class="input-group-append">
-            <button class="btn btn-primary" (click)="dataCadastro.toggle()" type="button"></button>
+            <button class="btn btn-primary" (click)="dataNascimento.toggle()" type="button"></button>
           </div>
         </div>
       </div>

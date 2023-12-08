@@ -8,7 +8,7 @@ export class User {
     login!: string;
     senha!: string;
     cpf!: string;
-    dataCadastro!: string;
+    dataNascimento!: string;
     //profissao: Profissao;
     profissao: Profissao = new Profissao();
     salario!: DoubleRange;

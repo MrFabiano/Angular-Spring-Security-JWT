@@ -17,6 +17,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxCurrencyDirective } from "ngx-currency";
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { UsuarioReportComponent } from './components/usuario-report/usuario-report.component';
+import { NgChartsModule } from 'ng2-charts';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 
 
@@ -28,7 +31,10 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     UsuarioComponent,
     MenuComponent,
     UsuarioaddComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    UsuarioReportComponent,
+    BarChartComponent
+ 
  
   ],
   imports: [
@@ -42,11 +48,10 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     NgxPaginationModule,
     MatPaginatorModule,
     NgxCurrencyDirective,
-   
-   
-   
-  ],
+    NgChartsModule,
+   ],
   providers: [provideNgxMask({ /* opções de cfg */ })],
   bootstrap: [AppComponent]
+ 
 })
 export class AppModule { }

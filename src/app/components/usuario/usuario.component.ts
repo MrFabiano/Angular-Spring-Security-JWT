@@ -106,5 +106,9 @@ constructor(private usuarioService: UsuarioService, private router: Router){}
   });
   }
  }
+
+ printReport(){
+  return this.usuarioService.downloadPdfReport();
+}
 }
 

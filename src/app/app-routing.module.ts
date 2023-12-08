@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.component';
 import { GuardsService } from './service/guard/guards.service';
+import { UsuarioReportComponent } from './components/usuario-report/usuario-report.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'userList', component : UsuarioComponent, canActivate: [GuardsService] },
   { path: 'userAdd', component : UsuarioaddComponent, canActivate: [GuardsService] },
   { path: 'userAdd/:id', component : UsuarioaddComponent, canActivate: [GuardsService] },
+  { path: 'userReport', component : UsuarioReportComponent, canActivate: [GuardsService] },
+  { path: 'chart', component : BarChartComponent, canActivate: [GuardsService] },
    
  ];
 
