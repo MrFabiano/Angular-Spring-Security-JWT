@@ -34,8 +34,6 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
     ConfirmationDialogComponent,
     UsuarioReportComponent,
     BarChartComponent
- 
- 
   ],
   imports: [
     BrowserModule,
@@ -48,7 +46,7 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
     NgxPaginationModule,
     MatPaginatorModule,
     NgxCurrencyDirective,
-    NgChartsModule,
+    NgChartsModule
    ],
   providers: [provideNgxMask({ /* opções de cfg */ })],
   bootstrap: [AppComponent]
