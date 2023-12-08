@@ -1,12 +1,12 @@
 <app-menu></app-menu>
 
-<h3 style="text-align: center;">Relatório de Usuário</h3>
+<h3 style="text-align: center;">Report User</h3>
 
 <form #formValidate="ngForm">
 
  <div class="form-row">
        <div class="form-group col-md-3">
-        <label for="dataInicio">Data Início</label>
+        <label for="dataInicio">Start Date</label>
         <span style="color: red; font-size: 23px;"> *</span>
         <div class="input-group">
           <input name="dataInicio" type="text" class="form-control" placeholder="dd/MM/yyyy"
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="form-group col-md-3">
-        <label for="dataFim">Data Fim</label>
+        <label for="dataFim">End Date</label>
         <span style="color: red; font-size: 23px;"> *</span>
         <div class="input-group">
           <input name="dataFim" type="text" class="form-control" placeholder="dd/MM/yyyy"
@@ -31,7 +31,7 @@
 
  <div class="form-row">
     <div class="form-group col-md-8">
-        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary" (click)="printReportDate()" style="margin-left: 10px;">Imprimir PDF</button>
+        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary" (click)="printReportDate()" style="margin-left: 10px;">Print PDF</button>
        </div>
  </div> 
 </form>

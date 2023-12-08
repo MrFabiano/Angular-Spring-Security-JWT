@@ -28,7 +28,7 @@ export class BarChartComponent implements OnInit {
       var arraySalario = JSON.parse('[' + this.userChart.salario + ']');
 
       this.barChartData = [
-        {data: arraySalario, label: 'Salário Usuário'}
+        {data: arraySalario, label: 'Wage User'}
       ];
     });
   }
@@ -38,6 +38,6 @@ export class BarChartComponent implements OnInit {
   barChartLegend = true;
   barChartPlugins = [];
   barChartData: ChartDataset[] = [
-    { data: [],  label: 'Salario' }
+    { data: [],  label: 'Wage' }
   ];
 }
