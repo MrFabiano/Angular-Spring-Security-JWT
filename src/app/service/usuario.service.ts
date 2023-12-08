@@ -65,20 +65,20 @@ export class UsuarioService {
   }
 
   downloadPdfReport(){
-    return this.httpClient.get(AppConstants.baseUrl + 'relatorio', {responseType: 'text'}).subscribe(data => {
+    return this.httpClient.get(AppConstants.baseUrl + 'report', {responseType: 'text'}).subscribe(data => {
       document.querySelector('iframe')!.src = data;
 
     });
   }
 
   downloadPdfReportParam(userreport: UserReport) {
-    return this.httpClient.post<any>(AppConstants.baseUrl + 'relatorio/', {responseType: 'text', userreport}).subscribe(data => {
+    return this.httpClient.post<any>(AppConstants.baseUrl + 'report/', {responseType: 'text', userreport}).subscribe(data => {
         document.querySelector('iframe')!.src = data;
     });
   }
 
-  loadGraph():Observable<any>{
-    return this.httpClient.get(AppConstants.baseUrl + 'graphic');
+  loadGraph():Observable<any> {
+    return this.httpClient.get<any>(AppConstants.baseUrl + 'graphic');
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartOptions, LabelItem } from 'chart.js';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { UserChart } from 'src/app/model/userchart';
+import {ChartDataset} from 'chart.js';
 
 
 @Component({
@@ -10,39 +10,34 @@ import { UserChart } from 'src/app/model/userchart';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
 
   constructor(private userService: UsuarioService){}
 
- userChart = new UserChart();
+  userChart = new UserChart();
 
   ngOnInit(): void {
-    this.userService.loadGraph().subscribe(data =>{
+    this.userService.loadGraph().pipe().subscribe(data =>{
       this.userChart = data;
 
-      this.chartData.labels == this.userChart.nome.split(',');
+      this.barChartLabels === this.userChart.nome.split(',');
 
       var arraySalario = JSON.parse('[' + this.userChart.salario + ']');
 
-      this.chartData.datasets = [
+      this.barChartData = [
         {data: arraySalario, label: 'Salário Usuário'}
       ];
     });
   }
-
-  options: ChartOptions = {
-    responsive: true,
-  };
-
-  chartData = {
-    labels: [],
-    legend: true,
-    plugins: [],
-    part: parent,
-    datasets: [
-      {
-        data: [],
-        label: 'Salário Usuário'
-      }
-    ]
-  }
+  
+  barChartLabels = [];
+  barChartType = 'bar';
+  barChartLegend = true;
+  barChartPlugins = [];
+  barChartData: ChartDataset[] = [
+    { data: [],  label: 'Salario' }
+  ];
 }
