@@ -1,5 +1,5 @@
 export class UserReport {
-
-    dataInicio!: string;
+     
+    dataInicio!: string; 
     dataFim!: string;
 }

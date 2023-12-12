@@ -9,7 +9,7 @@
         <label for="dataInicio">Start Date</label>
         <span style="color: red; font-size: 23px;"> *</span>
         <div class="input-group">
-          <input name="dataInicio" type="text" class="form-control" placeholder="dd/MM/yyyy"
+          <input name="dataInicio" type="date" class="form-control" placeholder="dd/MM/yyyy"
           ngbDatepicker #dataInicio="ngbDatepicker" [(ngModel)]="userReport.dataInicio" id="dataInicio" required="true">
           <div class="input-group-append">
             <button class="btn btn-primary" (click)="dataInicio.toggle()" type="button"></button>
@@ -20,7 +20,7 @@
         <label for="dataFim">End Date</label>
         <span style="color: red; font-size: 23px;"> *</span>
         <div class="input-group">
-          <input name="dataFim" type="text" class="form-control" placeholder="dd/MM/yyyy"
+          <input name="dataFim" type="date" class="form-control" placeholder="dd/MM/yyyy"
           ngbDatepicker #dataFim="ngbDatepicker" [(ngModel)]="userReport.dataFim" id="dataFim" required="true">
           <div class="input-group-append">
             <button class="btn btn-primary"  (click)="dataFim.toggle()" type="button"></button>
@@ -28,6 +28,7 @@
         </div>
       </div>
  </div> 
+
 
  <div class="form-row">
     <div class="form-group col-md-8">

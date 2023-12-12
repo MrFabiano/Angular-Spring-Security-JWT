@@ -1,8 +1,8 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { UserReport } from 'src/app/model/userreport';
+import { DatePipe } from '@angular/common';
 
 export class FormatDateAdapter extends NgbDateAdapter<string> {
 
@@ -71,14 +71,15 @@ function validarDia(valor: any) {
 export class UsuarioReportComponent {
 
   userReport = new UserReport();
+  //report: Report = {} as Report;
+  //userReport: UserReport = {} as UserReport;
 
-  constructor(private routeActive: ActivatedRoute, private userService: UsuarioService){}
+  constructor(private userService: UsuarioService){}
 
   ngOnInit(): void {}
 
   printReportDate(){
-  return this.userService.downloadPdfReportParam(this.userReport);
-
+    this.userService.downloadPdfReportParam(this.userReport);
   }
-
 }
+

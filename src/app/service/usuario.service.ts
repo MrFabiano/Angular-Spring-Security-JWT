@@ -1,9 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserReport } from 'src/app/model/userreport';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConstants } from '../app-constants';
 import { Observable } from 'rxjs';
-import { UserReport } from '../model/userreport';
-import { UserChart } from '../model/userchart';
+import { DatePipe } from '@angular/common';
+
+
 
 
 
@@ -11,8 +13,10 @@ import { UserChart } from '../model/userchart';
   providedIn: 'root'
 })
 export class UsuarioService {
+  //datePipe: any;
 
 
+  
   constructor(private httpClient: HttpClient) {}
 
   getProfissaoList(): Observable<any>{
@@ -71,10 +75,14 @@ export class UsuarioService {
     });
   }
 
-  downloadPdfReportParam(userreport: UserReport) {
-    return this.httpClient.post<any>(AppConstants.baseUrl + 'report/', {responseType: 'text', userreport}).subscribe(data => {
+  downloadPdfReportParam(userReport: UserReport){
+    const date: Date = new Date(); // Replace with your actual date
+    const dataInicio = new DatePipe('en-US').transform(userReport.dataInicio, 'dd/MM/yyyy');
+    const dataFim = new DatePipe('en-US').transform(userReport.dataFim, 'dd/MM/yyyy');
+    return this.httpClient.post<any>(AppConstants.baseUrl + 'report/', {responseType: 'text', dataInicio, dataFim}).subscribe(data => {
         document.querySelector('iframe')!.src = data;
     });
+    
   }
 
   loadGraph():Observable<any> {
