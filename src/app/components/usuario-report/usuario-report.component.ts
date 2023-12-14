@@ -2,7 +2,6 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { UserReport } from 'src/app/model/userreport';
-import { DatePipe } from '@angular/common';
 
 export class FormatDateAdapter extends NgbDateAdapter<string> {
 

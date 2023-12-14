@@ -82,7 +82,7 @@ export class UsuarioService {
     return this.httpClient.post<any>(AppConstants.baseUrl + 'report/', {responseType: 'text', dataInicio, dataFim}).subscribe(data => {
         document.querySelector('iframe')!.src = data;
     });
-    
+   
   }
 
   loadGraph():Observable<any> {
@@ -91,3 +91,4 @@ export class UsuarioService {
 
 }
 
+                                                                                                          
