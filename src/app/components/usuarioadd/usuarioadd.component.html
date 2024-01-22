@@ -60,7 +60,7 @@
       <div class="form-group col-md-3"> 
           <label for="salario">Wage</label>
           <span style="color: red; font-size: 23px;"> *</span>
-          <input [(ngModel)]="user.salario" class="form-control" name="salario" id="salario"
+          <input type="text" [(ngModel)]="user.salario" class="form-control" name="salario" id="salario"
            currencyMask [options]="{ prefix: 'R$', thousands: '.', decimal: ',' }">
       </div>
 

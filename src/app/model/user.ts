@@ -1,6 +1,7 @@
 import { Profissao } from "./profissao";
 import { Telefone } from "./telefone";
 
+
 export class User {
 
     id!: number;
@@ -11,7 +12,7 @@ export class User {
     dataNascimento!: string;
     //profissao: Profissao;
     profissao: Profissao = new Profissao();
-    salario!: DoubleRange;
+    salario?: DoubleRange;
     //telefones?: Telefone[];
     telefones!: Array<Telefone>;
   
