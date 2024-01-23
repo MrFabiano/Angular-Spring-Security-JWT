@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { AppConstants } from '../app-constants';
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { User } from '../model/user';
 
 
 
@@ -47,12 +48,12 @@ export class UsuarioService {
     return this.httpClient.get<any>(AppConstants.baseUrl + id);
   }
 
-  postSaveUser(user: any): Observable<any>{
-    return this.httpClient.post<any>(AppConstants.baseUrl, user);
+  postSaveUser(user: User): Observable<User>{
+    return this.httpClient.post<User>(AppConstants.baseUrl, user);
   }
 
-  updateSaveUser(user: any): Observable<any>{
-    return this.httpClient.put<any>(AppConstants.baseUrl, user);
+  updateSaveUser(user: any): Observable<User>{
+    return this.httpClient.put<User>(AppConstants.baseUrl, user);
   }
 
   userAutenticado(){

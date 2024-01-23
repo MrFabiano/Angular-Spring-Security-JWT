@@ -8,6 +8,7 @@ import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-boots
 import { Profissao } from 'src/app/model/profissao';
 
 
+
 @Injectable()
 export class FormatDateAdapter extends NgbDateAdapter<string> {
 

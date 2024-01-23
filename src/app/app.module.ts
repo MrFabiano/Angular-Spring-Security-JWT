@@ -20,7 +20,9 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { UsuarioReportComponent } from './components/usuario-report/usuario-report.component';
 import { NgChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -46,7 +48,10 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
     NgxPaginationModule,
     MatPaginatorModule,
     NgxCurrencyDirective,
-    NgChartsModule
+    NgChartsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
    ],
   providers: [provideNgxMask({ /* opções de cfg */ })],
   bootstrap: [AppComponent]

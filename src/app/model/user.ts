@@ -12,7 +12,7 @@ export class User {
     dataNascimento!: string;
     //profissao: Profissao;
     profissao: Profissao = new Profissao();
-    salario?: DoubleRange;
+    salario!: string;
     //telefones?: Telefone[];
     telefones!: Array<Telefone>;
   
