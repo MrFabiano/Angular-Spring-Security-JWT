@@ -126,6 +126,7 @@ export class UsuarioaddComponent implements OnInit {
   deletePhone(id: any, i: any){
     if(id === null){
       this.user.telefones?.splice(i,1);
+      
     }
 
     if(id !== null && confirm("Deseja remover?")){
@@ -134,6 +135,7 @@ export class UsuarioaddComponent implements OnInit {
           // this.user.telefones?.splice(index! - 1, 1); //remove o telefone da lista
           //    console.info('Telefone removido' + data);
           this.user.telefones?.splice(i, 1);
+          location.reload();
          });
     }
   }
