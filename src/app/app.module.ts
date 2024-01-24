@@ -12,7 +12,7 @@ import { HttpInterceptorModule } from './interceptor/header-interceptor.service'
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { MenuComponent } from './menu/menu.component';
 import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.component';
-import { NgxMaskDirective, provideNgxMask  } from 'ngx-mask';
+import { NgxMaskDirective, provideNgxMask, NgxMaskPipe  } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxCurrencyDirective } from "ngx-currency";
@@ -51,6 +51,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    NgxMaskPipe
  
    ],
   providers: [provideNgxMask({ /* opções de cfg */ })],
