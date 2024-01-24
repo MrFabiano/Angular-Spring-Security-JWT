@@ -33,7 +33,8 @@
     <div class="form-group col-md-3">
         <label for="cpf">CPF</label>
         <span style="color: red; font-size: 23px;" *ngIf="cpfValidate.invalid">*</span>
-        <input type="text" mask="000.000.000-00" [(ngModel)]="user.cpf" #cpfValidate="ngModel" class="form-control" id="cpf" required="true" name="cpf" autocapitalize="false">
+        <input type="text" [(ngModel)]="user.cpf" mask="000.000.000-00" #cpfValidate="ngModel" class="form-control" id="cpf" required="true" name="cpf" autocapitalize="false">
+        <!-- <input [(ngModel)]="user.cpf" #cpfValidate="ngModel"  autofocus class="form-control" id="cpf" name="cpf" inputmode="numeric" mask="000.000.000-00" placeholder="CPF" type="text" /> -->
        </div>
 
        <div class="form-group col-md-3">

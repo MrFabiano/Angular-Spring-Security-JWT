@@ -6,18 +6,11 @@ import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { User } from '../model/user';
 
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
   //datePipe: any;
-
-
-  
   constructor(private httpClient: HttpClient) {}
 
   getProfissaoList(): Observable<any>{

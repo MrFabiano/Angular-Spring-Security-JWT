@@ -1,6 +1,6 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { Router } from '@angular/router';
-import { first } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
