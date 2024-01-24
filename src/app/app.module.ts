@@ -23,6 +23,7 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NgxMaskPipe } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    NgxMaskPipe
  
    ],
   providers: [provideNgxMask({ /* opções de cfg */ })],
