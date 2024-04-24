@@ -111,7 +111,7 @@ export class UsuarioaddComponent implements OnInit {
 
   saveUser(){
     if(this.user.id != null && this.user.id.toString().trim() != null){ /*atualizando ou editando*/
-           this.userService.updateSaveUser(this.user).subscribe(data =>{
+           this.userService.updateSaveUser(this.user.id, this.user).subscribe(data =>{
             this.novo();
                  console.info("Atualizado" + data);
            });

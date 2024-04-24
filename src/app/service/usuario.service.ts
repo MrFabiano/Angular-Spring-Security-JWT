@@ -45,8 +45,9 @@ export class UsuarioService {
     return this.httpClient.post<User>(AppConstants.baseUrl, user);
   }
 
-  updateSaveUser(user: any): Observable<User>{
-    return this.httpClient.put<User>(AppConstants.baseUrl, user);
+  updateSaveUser(id: number, user: User): Observable<User>{
+    const url = `${AppConstants.baseUrl}${id}`;
+    return this.httpClient.put<User>(url, user);
   }
 
   userAutenticado(){
