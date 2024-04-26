@@ -67,6 +67,7 @@ constructor(private usuarioService: UsuarioService, private router: Router){}
         // this.users = data;
         //    });
        this.users.splice(index, -1); //Remove tela
+       location.reload();
           
        });
     }

@@ -30,8 +30,9 @@
         currentPage: page,  
         totalItems: count
     }; let i = index">
+     <td style="display: none;">{{user.id}}</td>
      <td>{{user.nome}}</td>
-     <td>{{user.cpf | mask: '000.000.000-00' }}</td>
+     <td>{{user.cpf | mask:'000.000.000-00'}}</td>
      <td><button class="btn btn-danger" type="button" (click)="deleteUser(user.id, i)">Delete</button></td>
      <td><button [routerLink]="['/userAdd', user.id]" routerLinkActive="router-link-active" class="btn btn-primary" type="button">Edite</button></td>
     </tr>

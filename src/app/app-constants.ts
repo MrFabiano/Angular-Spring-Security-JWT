@@ -8,6 +8,8 @@ export class AppConstants {
 
     public static get baseUrlPath(): string { return this.baseServidor + "profession/"}
 
+    public static get baseUrlReport(): string { return this.baseServidor + "report/"}
+
     public static get baseUrlPathRecuperar(): string { return this.baseServidor + "recover/"}
     
 }

@@ -84,7 +84,7 @@
    <tbody>
     <tr *ngFor="let fone of user.telefones; let i = index">
       <td>{{ fone.id }}</td>
-      <td>{{ fone.numero | mask: '+55 (00) 0-0000-0000'}}</td>
+      <td>{{ fone.numero }}</td>
     <td><button class="btn btn-danger" (click)="deletePhone(fone.id, i)">Delete</button></td>
     </tr>
    </tbody>
