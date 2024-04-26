@@ -65,7 +65,7 @@ export class UsuarioService {
 
   downloadPdfReport() {
     // Faça a solicitação HTTP para baixar o relatório em PDF e retorne o observable
-    return this.httpClient.get(AppConstants.baseUrl + 'report', {responseType: 'text'}).subscribe(data => {
+    return this.httpClient.get(AppConstants.baseUrlReport, {responseType: 'text'}).subscribe(data => {
       document.querySelector('iframe')!.src = data;
     });
   }
@@ -75,7 +75,7 @@ export class UsuarioService {
     const dataInicio = new DatePipe('en-US').transform(userReport.dataInicio, 'dd/MM/yyyy');
     const dataFim = new DatePipe('en-US').transform(userReport.dataFim, 'dd/MM/yyyy');
     // Remova completamente a opção { responseType: 'text' as 'json' } para tratar a resposta de acordo com o padrão (JSON)
-    return this.httpClient.post(AppConstants.baseUrl + 'report/', { dataInicio, dataFim }, { responseType: 'arraybuffer' })
+    return this.httpClient.post(AppConstants.baseUrlReport,  { dataInicio, dataFim }, { responseType: 'arraybuffer' })
       .subscribe((data: ArrayBuffer | Blob) => { // Adicione a tipagem explícita aqui
         // Verifique se a resposta é um ArrayBuffer ou Blob antes de processá-la
         if (data instanceof ArrayBuffer || data instanceof Blob) {
@@ -83,6 +83,7 @@ export class UsuarioService {
           const blob = new Blob([data], { type: 'application/pdf' });
           const url = window.URL.createObjectURL(blob);
           document.querySelector('iframe')!.src = url;
+          setTimeout(() => window.URL.revokeObjectURL(url), 10000);
         } else {
           console.error('Resposta inválida. Os dados não são um ArrayBuffer ou Blob.');
         }
