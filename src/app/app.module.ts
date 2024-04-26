@@ -12,9 +12,18 @@ import { HttpInterceptorModule } from './interceptor/header-interceptor.service'
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { MenuComponent } from './menu/menu.component';
 import { UsuarioaddComponent } from './components/usuarioadd/usuarioadd.component';
-import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { NgxMaskDirective, provideNgxMask, NgxMaskPipe  } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { NgxCurrencyDirective } from "ngx-currency";
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { UsuarioReportComponent } from './components/usuario-report/usuario-report.component';
+import { NgChartsModule } from 'ng2-charts';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgxMaskPipe } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -23,8 +32,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     LoginComponent,
     UsuarioComponent,
     MenuComponent,
-    UsuarioaddComponent
- 
+    UsuarioaddComponent,
+    ConfirmationDialogComponent,
+    UsuarioReportComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +46,17 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     HttpInterceptorModule,
     NgxMaskDirective,
     NgxPaginationModule,
-    MatPaginatorModule
-   
-  ],
+    MatPaginatorModule,
+    NgxCurrencyDirective,
+    NgChartsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    NgxMaskPipe
+ 
+   ],
   providers: [provideNgxMask({ /* opções de cfg */ })],
   bootstrap: [AppComponent]
+ 
 })
 export class AppModule { }

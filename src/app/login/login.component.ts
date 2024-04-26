@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { LoginServiceService } from '../service/login-service.service';
 import { Router } from '@angular/router';
+import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +24,10 @@ export class LoginComponent implements OnInit {
   public login(){
     //console.info("User" + this.usuario.login);
     this.loginService.login(this.usuario);
+  }
+
+  public recuperar(){
+    this.loginService.recuperar(this.usuario.login);
   }
 }
 

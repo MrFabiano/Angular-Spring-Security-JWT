@@ -1,6 +1,6 @@
 
-export interface Telefone {
+export class Telefone {
 
-    id: number;
-    numero: string;
+    id!: number;
+    numero!: string;
 }

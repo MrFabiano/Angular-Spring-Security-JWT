@@ -12,14 +12,18 @@ export class HeaderInterceptorService implements HttpInterceptor{
   constructor() {}
 
   processaErro(error: HttpErrorResponse){
-    let errorMessage = 'Error desconhecido';
+    let errorMessage = 'Error unknown';
     if(error.error instanceof ErrorEvent){
       console.error(error.error);
       errorMessage = 'Error: ' + error.error.error;
     }else{
-      errorMessage = 'Codigo: ' + error.error.code + '\nMensagem: ' + error.error.error;
+      if(error.status == 403){
+        errorMessage = "Access Denied";
+      }else{
+      errorMessage = 'Code: ' + error.error.code + '\nMensagem: ' + error.error.error;
       
     }
+  }
 
     window.alert(errorMessage)
     return throwError(errorMessage);
@@ -38,7 +42,7 @@ export class HeaderInterceptorService implements HttpInterceptor{
         return next.handle(tokenRequest).pipe(
           tap((event: HttpEvent<any>) => {
             if(event instanceof HttpResponse && (event.status === 200 || event.status === 201)){
-              console.info('Sucesso na operação');
+              console.info('Operation success');
             }
           }),catchError(this.processaErro));
 

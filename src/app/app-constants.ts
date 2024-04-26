@@ -4,6 +4,12 @@ export class AppConstants {
 
     public static get baseLogin(): string { return this.baseServidor + "login" }
 
-    public static get baseUrl(): string { return this.baseServidor + "api/usuario/"}
+    public static get baseUrl(): string { return this.baseServidor + "api/user/"}
+
+    public static get baseUrlPath(): string { return this.baseServidor + "profession/"}
+
+    public static get baseUrlReport(): string { return this.baseServidor + "report/"}
+
+    public static get baseUrlPathRecuperar(): string { return this.baseServidor + "recover/"}
     
 }

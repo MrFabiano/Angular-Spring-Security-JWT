@@ -27,6 +27,7 @@
             "styles": [
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": [    
@@ -66,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-project-spring:build:production"
+              "buildTarget": "angular-project-spring:build:production"
             },
             "development": {
-              "browserTarget": "angular-project-spring:build:development"
+              "buildTarget": "angular-project-spring:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-project-spring:build"
+            "buildTarget": "angular-project-spring:build"
           }
         },
         "test": {

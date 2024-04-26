@@ -4,13 +4,14 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { Observable } from 'rxjs';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Profissao } from 'src/app/model/profissao';
+
+
 
 
 @Injectable()
 export class FormatDateAdapter extends NgbDateAdapter<string> {
-
 
   readonly DELIMITER = '/';
 
@@ -49,13 +50,23 @@ export class FormateDate extends NgbDateParserFormatter {
   }
 
   override format(date: NgbDateStruct | null): string {
-    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
+    return date ? validarDia(date.day) + this.DELIMITER + validarDia(date.month) + this.DELIMITER + date.year : '';
   }
+
 
   toModel(date: NgbDateStruct | null): string | null{
     return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
   }
 }
+
+function validarDia(valor: any) {
+    if(valor.toString !== '' && parseInt(valor) <= 9){
+      return '0' + valor;
+    } else {
+      return valor;
+    }
+ 
+  }
 
 @Component({
   selector: 'app-root',
@@ -66,15 +77,29 @@ export class FormateDate extends NgbDateParserFormatter {
 })
 export class UsuarioaddComponent implements OnInit {
 
-  user: User = {} as User;
+  //user: User = {} as User;
+  user = new User();
 
-  telefone: Telefone = {} as Telefone;
+  profissoes!: Array<Profissao>;
+
+  telefone = new Telefone();
+  
+  //profissoes!: Profissao[];
+
+  //telefone: Telefone = {} as Telefone;
+
+ // profissoes!: Profissao[] | undefined;
 
   //telefone = new Telefone();
 
   constructor(private routeActive: ActivatedRoute, private userService: UsuarioService){}
 
   ngOnInit(): void {
+
+    this.userService.getProfissaoList().pipe().subscribe(data => {
+           this.profissoes = data;
+    });
+
     let id = this.routeActive.snapshot.paramMap.get('id');
 
     if(id != null){
@@ -86,7 +111,7 @@ export class UsuarioaddComponent implements OnInit {
 
   saveUser(){
     if(this.user.id != null && this.user.id.toString().trim() != null){ /*atualizando ou editando*/
-           this.userService.updateSaveUser(this.user).subscribe(data =>{
+           this.userService.updateSaveUser(this.user.id, this.user).subscribe(data =>{
             this.novo();
                  console.info("Atualizado" + data);
            });
@@ -101,6 +126,7 @@ export class UsuarioaddComponent implements OnInit {
   deletePhone(id: any, i: any){
     if(id === null){
       this.user.telefones?.splice(i,1);
+      
     }
 
     if(id !== null && confirm("Deseja remover?")){
@@ -109,6 +135,7 @@ export class UsuarioaddComponent implements OnInit {
           // this.user.telefones?.splice(index! - 1, 1); //remove o telefone da lista
           //    console.info('Telefone removido' + data);
           this.user.telefones?.splice(i, 1);
+          location.reload();
          });
     }
   }
@@ -120,12 +147,14 @@ export class UsuarioaddComponent implements OnInit {
       }
 
       this.user.telefones.push(this.telefone);
-      this.telefone = {} as Telefone;
-      //this.telefone = new Telefone();
+      //this.telefone = {} as Telefone;
+      this.telefone = new Telefone();
   }
 
   novo(){
-  this.user = {} as User;
-  this.telefone = {} as Telefone;
+  // this.user = {} as User;
+    //this.telefone = {} as Telefone;
+  this.user = new User();
+  this.telefone = new Telefone();
   }
 }
