@@ -10,6 +10,8 @@ import { User } from '../model/user';
   providedIn: 'root'
 })
 export class UsuarioService {
+
+  user: User = new User;
   //datePipe: any;
   constructor(private httpClient: HttpClient) {}
 
@@ -47,6 +49,7 @@ export class UsuarioService {
 
   updateSaveUser(id: number, user: User): Observable<User>{
     const url = `${AppConstants.baseUrl}${id}`;
+    user.telefones = this.user.telefones;
     return this.httpClient.put<User>(url, user);
   }
 
