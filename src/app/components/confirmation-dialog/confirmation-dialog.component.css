@@ -1,0 +1,8 @@
+.mat-dialog-actions .button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.mat-dialog-actions .button-container button {
+    margin: 0 10px; /* Adicione margens conforme necessário */
+}

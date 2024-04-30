@@ -25,7 +25,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskPipe } from 'ngx-mask';
 import {MatIconModule} from '@angular/material/icon';
-import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     UsuarioaddComponent,
     ConfirmationDialogComponent,
     UsuarioReportComponent,
-    BarChartComponent
+    BarChartComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatNativeDateModule,
     NgxMaskPipe,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonModule
  
    ],
   providers: [provideNgxMask({ /* opções de cfg */ })],

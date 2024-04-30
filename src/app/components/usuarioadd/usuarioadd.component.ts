@@ -78,7 +78,7 @@ function validarDia(valor: any) {
 export class UsuarioaddComponent implements OnInit {
 
   //user: User = {} as User;
-  user = new User();
+  user: User = new User();
 
   profissoes!: Array<Profissao>;
 
@@ -143,12 +143,14 @@ export class UsuarioaddComponent implements OnInit {
   addPhone(){
       if(this.user.telefones === undefined){
         //this.user.telefones = {} as Telefone[];
-        this.user.telefones = new Array<Telefone>();
+        this.user.telefones = [];
+       // this.user.telefones = this.user.telefones;
       }
 
       this.user.telefones.push(this.telefone);
       //this.telefone = {} as Telefone;
       this.telefone = new Telefone();
+      //this.user.telefones = this.user.telefones;
   }
 
   novo(){

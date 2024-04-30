@@ -2,7 +2,7 @@ import { UserReport } from 'src/app/model/userreport';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConstants } from '../app-constants';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { User } from '../model/user';
 import { MatDialog } from '@angular/material/dialog';
@@ -32,8 +32,8 @@ export class UsuarioService {
     return this.httpClient.get<any>(AppConstants.baseUrl + 'userByName/' + nome + '/page/' + page);
   }
 
-  deleteUser(id: number) : Observable<any>{
-       return this.httpClient.delete(AppConstants.baseUrl + id, {responseType : 'text'});
+  deleteUser(id: number){
+       return this.httpClient.delete(AppConstants.baseUrl + id, {responseType : 'text'}).pipe(first());
   }
 
   consultUser(nome: string) : Observable<any>{

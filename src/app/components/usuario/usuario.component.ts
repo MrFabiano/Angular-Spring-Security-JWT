@@ -1,9 +1,12 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Pipe, PipeTransform } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Observable, first } from 'rxjs';
+import { Observable, catchError, first, of, tap } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Pipe({
   name: 'cpfMask'
@@ -33,23 +36,27 @@ export class CpfMaskPipe implements PipeTransform {
   }
 }
 
+
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
   styleUrls: ['./usuario.component.css'],
+  
 })
 export class UsuarioComponent implements OnInit {
 
-  //users! : User[];
+  user: User = new User;
   users!: Array<User>;
-  //users!: Array<User>;
   nome!: string;
   page = 1;
   count = 0;
   pageSize = 3;
   pageSizes = [3, 6, 9];
 
-constructor(private usuarioService: UsuarioService, private router: Router, private snackBar: MatSnackBar){}
+constructor(private usuarioService: 
+  UsuarioService, private router: Router, 
+  private snackBar: MatSnackBar,
+  public dialog: MatDialog,){}
 
   ngOnInit(): void {
     this.usuarioService.getListUser().pipe(first()).subscribe(data =>{
@@ -58,42 +65,36 @@ constructor(private usuarioService: UsuarioService, private router: Router, priv
     });
   }
 
-  deleteUser(id: number, index: any){
-    //if(confirm('Deseja mesmo remover?')){
-      //this.snackBar.open('Course removed successfully', 'X', { 
-        //duration: 5000,
-        //verticalPosition: 'top',
-        //horizontalPosition: 'center' 
-      //});
-      //this.usuarioService.deleteUser(id).subscribe(data => {
-       // console.log("Retorno do métod delete : " + data);
+ deleteUser(id: number, index: any){
+  console.log('deleteUser method called');
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Do you want to remove this user?',
+   });
 
-        // this.usuarioService.getListUser().subscribe(data =>{
-        // this.users = data;
-        //    });
-      // this.users.splice(index, -1); //Remove tela
-      // location.reload();
-          
-      // });
-    //}
-
-    this.usuarioService.deleteUser(id).subscribe(
-      () => {
-        this.snackBar.open('Course removed successfully', 'X', { 
-          duration: 5000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center' 
-        });
-        },
-        () => this.consulterUser()
-     );
+    dialogRef.afterClosed().subscribe((result: boolean) => { 
+     if(result){
+      console.log('About to call usuarioService.deleteUser');
+      this.usuarioService.deleteUser(id).subscribe(
+        () => {
+          console.log('User deleted successfully');
+          location.reload();
+          this.snackBar.open('User removed successfully', 'X', { 
+            duration: 5000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
+          });
+          this.users.splice(index, -1);
+          },
+          () => this.onError('Error when trying to remove user')
+       );
+     }
+    });
+ }
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent,{
+      data: errorMsg
+    });
   }
-
-  //onError(errorMsg: string) {
-    //this.dialog.open(ErrorDialogComponent,{
-    //  data: errorMsg
-    //});
- // }
 
   consulterUser(){
     if(this.nome === ''){
@@ -132,6 +133,10 @@ constructor(private usuarioService: UsuarioService, private router: Router, priv
 
  printReport(){
   return this.usuarioService.downloadPdfReport();
+  }
+
 }
-}
+
+
+
 
