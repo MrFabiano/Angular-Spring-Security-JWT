@@ -24,6 +24,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskPipe } from 'ngx-mask';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { NgxMaskPipe } from 'ngx-mask';
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    NgxMaskPipe
+    NgxMaskPipe,
+    MatIconModule,
+    MatSnackBarModule
  
    ],
   providers: [provideNgxMask({ /* opções de cfg */ })],

@@ -5,6 +5,7 @@ import { AppConstants } from '../app-constants';
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { User } from '../model/user';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UsuarioService {
 
   user: User = new User;
   //datePipe: any;
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, public dialog: MatDialog,) {}
 
   getProfissaoList(): Observable<any>{
     return this.httpClient.get<any>(AppConstants.baseUrlPath);

@@ -67,7 +67,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-project-spring:build:production"
+              "browserTarget": "angular-project-spring:build:production",
+              "port": 4201
             },
             "development": {
               "browserTarget": "angular-project-spring:build:development"

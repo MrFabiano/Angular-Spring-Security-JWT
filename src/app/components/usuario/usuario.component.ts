@@ -1,4 +1,5 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable, first } from 'rxjs';
 import { User } from 'src/app/model/user';
@@ -48,7 +49,7 @@ export class UsuarioComponent implements OnInit {
   pageSize = 3;
   pageSizes = [3, 6, 9];
 
-constructor(private usuarioService: UsuarioService, private router: Router){}
+constructor(private usuarioService: UsuarioService, private router: Router, private snackBar: MatSnackBar){}
 
   ngOnInit(): void {
     this.usuarioService.getListUser().pipe(first()).subscribe(data =>{
@@ -58,20 +59,41 @@ constructor(private usuarioService: UsuarioService, private router: Router){}
   }
 
   deleteUser(id: number, index: any){
-    if(confirm('Deseja mesmo remover?')){
-      
-      this.usuarioService.deleteUser(id).subscribe(data => {
-        console.log("Retorno do métod delete : " + data);
+    //if(confirm('Deseja mesmo remover?')){
+      //this.snackBar.open('Course removed successfully', 'X', { 
+        //duration: 5000,
+        //verticalPosition: 'top',
+        //horizontalPosition: 'center' 
+      //});
+      //this.usuarioService.deleteUser(id).subscribe(data => {
+       // console.log("Retorno do métod delete : " + data);
 
         // this.usuarioService.getListUser().subscribe(data =>{
         // this.users = data;
         //    });
-       this.users.splice(index, -1); //Remove tela
-       location.reload();
+      // this.users.splice(index, -1); //Remove tela
+      // location.reload();
           
-       });
-    }
+      // });
+    //}
+
+    this.usuarioService.deleteUser(id).subscribe(
+      () => {
+        this.snackBar.open('Course removed successfully', 'X', { 
+          duration: 5000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center' 
+        });
+        },
+        () => this.consulterUser()
+     );
   }
+
+  //onError(errorMsg: string) {
+    //this.dialog.open(ErrorDialogComponent,{
+    //  data: errorMsg
+    //});
+ // }
 
   consulterUser(){
     if(this.nome === ''){
