@@ -6,6 +6,7 @@ import { Observable, first } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { User } from '../model/user';
 import { MatDialog } from '@angular/material/dialog';
+import { Telefone } from '../model/telefone';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class UsuarioService {
 
   user: User = new User;
+  telefones: Telefone = new Telefone;
   //datePipe: any;
   constructor(private httpClient: HttpClient, public dialog: MatDialog,) {}
 
@@ -50,7 +52,12 @@ export class UsuarioService {
 
   updateSaveUser(id: number, user: User): Observable<User>{
     const url = `${AppConstants.baseUrl}${id}`;
-    user.telefones = this.user.telefones;
+    const novoTelefone: Telefone = new Telefone(); // Crie uma nova instância de Telefone
+    if (this.telefones.numero !== null) {
+      novoTelefone.numero = this.telefones.numero; // Defina o número de telefone
+      user.telefones.push(novoTelefone); // Adicione o novo telefone ao array de telefones do usuário
+    }
+  
     return this.httpClient.put<User>(url, user);
   }
 

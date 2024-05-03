@@ -1,8 +1,7 @@
 
-import { User } from './user';
 export class Telefone {
 
-    id!: number;
+    id!: number | null;
     numero!: string;
 
 }

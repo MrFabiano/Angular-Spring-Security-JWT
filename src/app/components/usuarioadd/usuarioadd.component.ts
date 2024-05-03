@@ -1,11 +1,15 @@
 import { Telefone } from './../../model/telefone';
 import { User } from './../../model/user';
 import { Component, OnInit, Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Profissao } from 'src/app/model/profissao';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 
 
@@ -77,22 +81,17 @@ function validarDia(valor: any) {
 })
 export class UsuarioaddComponent implements OnInit {
 
-  //user: User = {} as User;
+
   user: User = new User();
 
   profissoes!: Array<Profissao>;
 
-  telefone = new Telefone();
-  
-  //profissoes!: Profissao[];
+  telefones: Telefone = new Telefone();
 
-  //telefone: Telefone = {} as Telefone;
 
- // profissoes!: Profissao[] | undefined;
-
-  //telefone = new Telefone();
-
-  constructor(private routeActive: ActivatedRoute, private userService: UsuarioService){}
+  constructor(private routeActive: ActivatedRoute, private userService: UsuarioService, 
+    private router: Router, private snackBar: MatSnackBar,
+     public dialog: MatDialog){}
 
   ngOnInit(): void {
 
@@ -124,39 +123,56 @@ export class UsuarioaddComponent implements OnInit {
   }
 
   deletePhone(id: any, i: any){
-    if(id === null){
-      this.user.telefones?.splice(i,1);
-      
-    }
+    console.log('deleteUser method called');
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Do you want to remove this user?',
+   });
 
-    if(id !== null && confirm("Deseja remover?")){
-         this.userService.removePhone(id).subscribe(data => {
-          // const index = this.user.telefones?.indexOf(id);//Identifica posição da lista de telefone removido
-          // this.user.telefones?.splice(index! - 1, 1); //remove o telefone da lista
-          //    console.info('Telefone removido' + data);
-          this.user.telefones?.splice(i, 1);
+    dialogRef.afterClosed().subscribe((result: boolean) => { 
+     if(result){
+      console.log('About to call phone');
+      this.userService.removePhone(id).subscribe(
+        () => {
+          console.log('Phone deleted successfully');
           location.reload();
-         });
-    }
+          this.snackBar.open('Phone removed successfully', 'X', { 
+            duration: 5000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
+          });
+          this.user.telefones?.splice(i, 1);
+          },
+          () => this.onError('Error when trying to remove phone')
+       );
+     }
+    });
+ }
+  
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent,{
+      data: errorMsg
+    });
   }
 
   addPhone(){
-      if(this.user.telefones === undefined){
-        //this.user.telefones = {} as Telefone[];
-        this.user.telefones = [];
-       // this.user.telefones = this.user.telefones;
-      }
-
-      this.user.telefones.push(this.telefone);
-      //this.telefone = {} as Telefone;
-      this.telefone = new Telefone();
-      //this.user.telefones = this.user.telefones;
+    if (!this.user.telefones) {
+      this.user.telefones = []; // Inicializa o array de telefones se ainda não estiver definido
+  }
+  // Cria um novo objeto de telefone com o número do telefone
+  const novoTelefone: Telefone = {
+      id: null,
+      numero: this.telefones.numero // Use o número de telefone do objeto telefones do componente, não o objeto telefones em si
+  };
+  // Adiciona o novo telefone ao array de telefones do usuário
+  this.user.telefones.push(novoTelefone);
+}
+    
+  novo(){
+  this.user = new User();
+  this.telefones = new Telefone();
   }
 
-  novo(){
-  // this.user = {} as User;
-    //this.telefone = {} as Telefone;
-  this.user = new User();
-  this.telefone = new Telefone();
+  trackByTelefone(index: number, telefone: Telefone) {
+   return telefone.id; // Utilize o ID do telefone ou outra propriedade única
   }
 }
